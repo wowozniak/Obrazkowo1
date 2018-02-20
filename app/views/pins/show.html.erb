@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading center"><%= image_tag @pin.image.url(:medium) %></div>
+         <div class="panel-body">
+            <%= @pin.description %><br/>
+            </br><strong><%= @pin.user.name %></strong></br>
+            </div>
+            <div class="panel-footer">
+              <% if @pin.user == current_user %>
+                <%= link_to 'Edycja', edit_pin_path(@pin) %> |
+              <% end %>
+              <%= link_to 'Wstecz', pins_path %>
+            </div>
+      </div>
+   </div>
+</div>

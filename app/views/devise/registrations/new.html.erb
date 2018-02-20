@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Rejestracja</h2></div>
+  <div class="panel-body">
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+      <div class="form-group">
+       <%= f.label :name, "Login" %>
+       <%= f.text_field :name, class: "form-control", :autofocus => true %>
+      </div>
+      
+      <div class="form-group">
+       <%= f.label :email %><br/>
+       <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+       <%= f.label :password, "Hasło" %>
+       <% if @minimum_password_length %>
+       <em>(minmum <%= @minimum_password_length %> znaków)</em>
+       <% end %><br />
+       <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+       <%= f.submit "Wyślij", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="panel-footer"><%= render "devise/shared/links" %></div>
+</div>
