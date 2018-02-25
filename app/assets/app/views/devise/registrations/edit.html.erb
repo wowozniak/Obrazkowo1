@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Edycja profilu <%= resource_name.to_s.humanize %></h2></div>
+  <div class="panel-body">
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+      <div class="form-group">
+       <%= f.label :name, "Login" %>
+       <%= f.text_field :name, class: "form-control", :autofocus => true %>
+      </div>    
+    
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+      <div class="form-group">
+        <%= f.label :password, "Hasło" %> <i>(pozostaw puste, jeżeli nie chcesz go zmieniać)</i><br />
+        <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Powtórz hasło" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :current_password, "Bieżące hasło" %> <i>(potrzebne do zatwierdzenia zmian)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Zmień", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
+<h3>Usuń konto</h3>
+
+<p>Nie jesteś zadowolony/a? <%= button_to "Usuń konto", registration_path(resource_name), data: { confirm: "Jesteś pewien?" }, method: :delete, class: 'btn btn-primary' %></p>
+</div>
+<div class="panel-footer"><%= link_to "Wstecz", :back %></div>
+</div>

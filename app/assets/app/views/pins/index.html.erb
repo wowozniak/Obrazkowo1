@@ -3,19 +3,18 @@
     <div class="box">     
       <div class="panel panel-default">
         <%= link_to image_tag(pin.image.url(:medium)), pin %><br/>
-        
         <div class="panel-body">
           <%= pin.description %><br/>
-          </br>Dodany przez: <strong><%= link_to pin.user.name, user_path(pin.user.id) %></strong></br>
-        </div>        
+          </br><strong><%= pin.user.name if pin.user %></strong></br>
+        </div>
         <% if pin.user == current_user %>
           <div class="panel-footer">
             <%= link_to 'Edytuj', edit_pin_path(pin) %><br/>
             <%= link_to 'Usuń', pin, method: :delete, data: { confirm: 'Jesteś pewien?' } %><br/>
           </div>
         <% end %>
-      </div>
-    </div>
+   </div>
+  </div>
   <% end %>
 </div>
 <div class="center">

@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+<div class="panel-heading"><h2>Profil użytkownika <%= @user.name %> </h2> </div>
+  <div class="panel-body">
+      Login: <%= @user.name %> <br/>
+      Email: <%= @user.email %> <br/>
+      <% @user.pins.count %>
+      <h3>Lista pinów dodanych przez <%= @user.name %></h3>   
+    <div id='pins' class="transitions-enabled">
+      <% @user.pins.each do |pin| %>
+        <div class="box">
+          <div class="panel panel-default">
+            <%= link_to image_tag(pin.image.url(:medium)), pin %>
+            <div class="panel-body">
+              <%= pin.description %>
+            </div>
+            <% if pin.user == current_user %>
+              <div class="panel-footer">
+                <%= link_to 'Edytuj', edit_pin_path(pin) %><br/>
+                <%= link_to 'Usuń', pin, method: :delete, data: { confirm: 'Jesteś pewien?' } %><br/>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
